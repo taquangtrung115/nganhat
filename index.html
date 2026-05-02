@@ -3,113 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Ngắn Hát</title>
+    <title>Ngắn Hát</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
             min-height: 100vh;
-            background-color: #1a1a2e;
+            background-color: #f5f56b;
             font-family: 'Arial', sans-serif;
-            color: #eee;
-            text-align: center;
-            padding: 16px;
+            position: relative;
         }
-        h1 { margin-bottom: 20px; font-size: 1.5em; color: #e94560; }
-        #video-container {
-            width: 100%;
-            max-width: 854px;
-            aspect-ratio: 16 / 9;
-            background: #000;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-        #video-container iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-        #no-video {
-            margin-top: 24px;
-        }
-        #no-video p { margin-bottom: 12px; color: #aaa; font-size: 0.95em; }
-        #url-form { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
-        #url-input {
-            padding: 8px 12px;
-            border-radius: 6px;
-            border: 1px solid #444;
-            background: #16213e;
-            color: #eee;
-            font-size: 0.95em;
-            width: 320px;
-        }
-        #url-form button {
-            padding: 8px 16px;
-            border-radius: 6px;
-            border: none;
-            background: #e94560;
-            color: #fff;
-            cursor: pointer;
-            font-size: 0.95em;
+        #message {
+            position: absolute;
+            top: 55%;
+            left: 33%;
+            transform: translateY(-50%);
+            color: #e84010;
+            font-size: 1.1em;
         }
     </style>
 </head>
 <body>
-    <h1>🎬 Video Ngắn Hát</h1>
-    <div id="video-container"></div>
-    <div id="no-video" style="display:none;">
-        <p>Nhập URL YouTube để xem video:</p>
-        <div id="url-form">
-            <input id="url-input" type="text" placeholder="https://www.youtube.com/watch?v=..." />
-            <button onclick="loadVideo()">Xem</button>
-        </div>
-    </div>
-
-    <script>
-        function getYouTubeId(url) {
-            try {
-                const u = new URL(url);
-                if (u.hostname === 'youtu.be') return u.pathname.slice(1);
-                return u.searchParams.get('v');
-            } catch (e) {
-                return null;
-            }
-        }
-
-        function embedVideo(videoId) {
-            const container = document.getElementById('video-container');
-            const iframe = document.createElement('iframe');
-            iframe.src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1';
-            iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-            iframe.allowFullscreen = true;
-            container.appendChild(iframe);
-        }
-
-        function loadVideo() {
-            const url = document.getElementById('url-input').value.trim();
-            const videoId = getYouTubeId(url);
-            if (videoId) {
-                document.getElementById('no-video').style.display = 'none';
-                document.getElementById('video-container').innerHTML = '';
-                embedVideo(videoId);
-                history.replaceState(null, '', '?v=' + videoId);
-            } else {
-                alert('URL YouTube không hợp lệ!');
-            }
-        }
-
-        (function init() {
-            const params = new URLSearchParams(window.location.search);
-            const videoId = params.get('v');
-            if (videoId) {
-                embedVideo(videoId);
-            } else {
-                document.getElementById('no-video').style.display = 'block';
-            }
-        })();
-    </script>
+    <div id="message">có mới lạ, mấy này là lẹ lắm =))</div>
 </body>
 </html>
